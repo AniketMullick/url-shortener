@@ -1,5 +1,6 @@
 import express from "express";
 import dotenv from "dotenv";
+import rateLimiter from "./rate-limiter.js";
 import {normalizeURL,insertURL,getURL} from "./utilities.js";
 dotenv.config();
 const app=express();
@@ -53,7 +54,7 @@ app.post("/shorten",async(req,res)=>{
         });
     }
 });
-app.get("/:shortCode",async(req,res)=>{ //shortCode is a path parameter
+app.get("/:shortCode",rateLimiter,async(req,res)=>{ //shortCode is a path parameter
     try{
     let short_url=req.params.shortCode;
     short_url=short_url.trim();

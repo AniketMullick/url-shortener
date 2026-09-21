@@ -68,7 +68,7 @@ export const getURL=async(surl)=>{
         return result.rows[0].long_url;
     }
     else
-        throw new Error("Rate Limit Exceeded: Maximum access limit of "+process.env.MAX_ACCESS+" per hour exceeded for this URL.");
+        throw new Error("Access Limit Exceeded: Maximum access limit of "+process.env.MAX_ACCESS+" per hour exceeded for this URL.");
     }catch(err){
         console.error("Database Error (Request could not be resolved): "+err.message);
         throw err;
